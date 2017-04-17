@@ -12,13 +12,10 @@
 	</xsl:template>
 	<xsl:template match="Book">
 		<h1><xsl:value-of select="@Genre"/></h1>
-		<ul>
-			<xsl:apply-templates select="@Genre"/>
-		</ul>
-	</xsl:template>
-	<xsl:template match="@Genre">
-		<xsl:for-each select="$doc//Book[@Genre = current()]">
-		<li><xsl:value-of select="@Title"/></li>
-		</xsl:for-each>
+			<ul>
+				<xsl:for-each select="$doc//Book[@Genre = current()/@Genre]">
+					<li><xsl:value-of select="@Title"/></li>
+				</xsl:for-each>
+			</ul>
 	</xsl:template>
 </xsl:transform>
