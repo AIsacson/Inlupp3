@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:transform version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 <xsl:output method="xml"/>
-	<xsl:variable name="pubdoc" select="document('publishers.xml')"/>
 	<xsl:variable name="bookdoc" select="document('books.xml')"/>
 	<xsl:template match="/">
+		<xsl:variable name="pubdoc" select="document('publishers.xml')"/>
 		<Resultat>
 			<xsl:for-each select="$pubdoc//Publisher">
 				<xsl:element name="Förlag">
