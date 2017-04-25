@@ -13,7 +13,7 @@
 						<th>Genre</th>
 					</tr>
 					<xsl:apply-templates select="$doc//Book[not(@OriginalLanguage = preceding::Book/@OriginalLanguage)]">
-						<xsl:sort select="@OriginalLanguage" order="ascending"/>
+						<xsl:sort select="@OriginalLanguage"/>
 					</xsl:apply-templates>
 				</table>
 			</body>
@@ -22,13 +22,15 @@
 	<xsl:template match="Book">
 		<xsl:variable name="antalBocker" select="count($doc//Book[@OriginalLanguage = current()/@OriginalLanguage])"/>
 		<xsl:for-each select="$doc//Book[@OriginalLanguage = current()/@OriginalLanguage]">
-			<xsl:sort select="@Title" order="ascending"/>
-			<xsl:variable name="x" select="@OriginalLanguage"/>
+			<xsl:sort select="@Title"/>
 			<tr>
-				<td rowspan="{count(current()/@OriginalLanguage)}">
-					<xsl:value-of select="@OriginalLanguage"/>
-				</td>
+				<xsl:if test="position() = 1">
+					<td rowspan="{$antalBocker}">
+						<xsl:value-of select="@OriginalLanguage"/>
+					</td>
+				</xsl:if>
 				<td><xsl:value-of select="@Title"/></td>
+				<td><xsl:value-of select="@Genre"/></td>
 			</tr>
 		</xsl:for-each>
 	</xsl:template>
