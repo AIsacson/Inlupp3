@@ -6,7 +6,7 @@
 		<html>
 			<head><title>Q1</title></head>
 			<body>
-				<xsl:apply-templates select="$doc//Book[not(@Genre = preceding::Book/@Genre)]"/>
+				<xsl:apply-templates select="$doc//Book[not(@Genre = preceding::Book/@Genre)][@Genre]"/>
 			</body>
 		</html>
 	</xsl:template>

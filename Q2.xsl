@@ -5,7 +5,7 @@
 	<xsl:template match="/">
 		<xsl:variable name="pubdoc" select="document('publishers.xml')"/>
 		<Resultat>
-			<xsl:for-each select="$pubdoc//Publisher">
+			<xsl:for-each select="$pubdoc//Publisher[@Name = $bookdoc//Book/descendant::Translation/@Publisher]">
 				<xsl:element name="Förlag">
 					<xsl:attribute name="Namn"><xsl:value-of select="@Name"/></xsl:attribute>
 					<xsl:attribute name="Land"><xsl:value-of select="Address/Country"/></xsl:attribute>
